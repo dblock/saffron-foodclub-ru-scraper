@@ -6,11 +6,13 @@ namespace Saffron {
   }
 
   export interface RecipeCookingInstruction {
+    type: string;
     text: string;
     imageUrl?: string;
   }
 
   export interface RecipeCookingInstructionHeader {
+    type: string;
     text: string;
   }
 

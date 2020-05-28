@@ -53,11 +53,15 @@ function parseInstructions($: CheerioStatic): Array<Saffron.RecipeCookingInstruc
   $('div[itemprop="itemListElement"]').each((_index, el) => {
     const header = $('h2', el).text();
     if (header) {
-      instructions = instructions.concat({ text: header } as Saffron.RecipeCookingInstructionHeader);
+      instructions = instructions.concat({ 
+        text: header, 
+        type: 'header' 
+      } as Saffron.RecipeCookingInstructionHeader);
     } else {
       instructions = instructions.concat({ 
         text: $(el).text(),
-        imageUrl: $('picture img', el.parent).attr('data-original')
+        imageUrl: $('picture img', el.parent).attr('data-original'),
+        type: 'instruction'
       } as Saffron.RecipeCookingInstruction);
     }
   });

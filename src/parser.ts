@@ -1,13 +1,21 @@
 import './recipe';
 
 function parseDuration(s: string): Number {
-  const parts = s.split(/\s+/, 2)
-  switch(parts[1]) {
-    case 'часа':
-      return Number(parts[0]) * 60
-    default:
-      return Number(parts[0]) 
+  const parts = s.split(/\s+/)
+  var result = 0;
+  for(var i = 0; i < parts.length; i += 2) {
+    switch(parts[i + 1]) {
+      case 'часа':
+        result += Number(parts[i]) * 60
+        break;
+      case 'мин':
+        result += Number(parts[i]);
+        break;
+      default:
+        throw "unsupported duration: " + parts[i + 1];
+    }  
   }
+  return result;
 }
 
 function parseName($: CheerioStatic): string {
